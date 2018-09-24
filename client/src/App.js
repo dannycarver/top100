@@ -7,6 +7,9 @@ class App extends Component {
 
   componentDidMount() {
     //TOP100 make a call to our rails server to get Items
+    fetch('/api/songs')
+    .then( res => res.json() )
+    .then( todos => this.setState({ todos }))
   }
 
   addSong = (name) => {
