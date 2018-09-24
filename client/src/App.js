@@ -9,23 +9,37 @@ class App extends Component {
     //TOP100 make a call to our rails server to get Items
     fetch('/api/songs')
     .then( res => res.json() )
-    .then( todos => this.setState({ todos }))
+    .then( top100s => this.setState({ top100s }) )
   }
 
   addSong = (name) => {
-    const { top100s } = this.state;
-    const id = Math.floor(( 1 + Math.random()) * 0x1000).toString() 
-    this.setState({ top100s: [...top100s, { id, name }] });
-  }
+    let song = { name };
+    fetch('/api/items', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(song)
+    }).then( res => res.json() )
+      .then( top100 => {
+      const { top100s } = this.state;
+       
+      this.setState({ top100s: [...top100s] });
+  })
+}
 
   updateTop100 = (id) => {
-    let top100s = this.state.top100s.map( t=> {
-      if (t.id === id)
-        return { ...t, complete: !t.complete }
-      return t;
-    });
-    this.setState({ top100s });
-
+    fetch(`/api/items/${id}`, { method: 'PUT' })
+      .then( res => res.json() )
+      .then( song => {
+        let top100s = this.state.top100s.map( t=> {
+            if (t.id === id)
+              return song
+            return t;
+          });
+          this.setState({ top100s });
+        })
   }
 
   deleteTop100 = (id) => {

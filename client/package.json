@@ -1,8 +1,5 @@
-"proxy": "http://localhost:3001",
-"scripts": {  "build": "cd client && npm install && npm run build && cd ..",
-  "deploy": "cp -a client/build/. public/",
-  "heroku-postbuild": "npm run build && npm run deploy && echo 'Client built!'"
- },
+
+
 {
   "name": "client",
   "version": "0.1.0",
@@ -14,6 +11,12 @@
     "react-materialize": "^2.4.5",
     "react-scripts": "1.1.5"
   },
+  "proxy": "http://localhost:3001",
+  "scripts": {
+    "build": "cd client && npm install && npm run build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "heroku-postbuild": "npm run build && npm run deploy && echo 'Client built!'"
+   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

@@ -12,7 +12,7 @@ class Api::SongsController < ApplicationController
 
     def update
         song = Song.find(params[:id])
-        song.update(complete: !item.complete)
+        song.update(complete: !song.complete)
         render json: Song
     end
 
