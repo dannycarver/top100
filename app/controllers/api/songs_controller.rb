@@ -9,11 +9,13 @@ class Api::SongsController < ApplicationController
             render json: song
         else
             render json: { errors: song.errors }, status: :unprocessable_entity
-
+        end
+    end
+    
     def update
         song = Song.find(params[:id])
         song.update(complete: !song.complete)
-        render json: Song
+        render json: song
     end
 
     def destroy

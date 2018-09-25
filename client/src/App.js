@@ -9,7 +9,9 @@ class App extends Component {
     //TOP100 make a call to our rails server to get Items
     fetch('/api/songs')
     .then( res => res.json() )
-    .then( top100s => this.setState({ top100s }) )
+    .then( top100s => {
+      this.setState({ top100s }) 
+    })
   }
 
   addSong = (name) => {

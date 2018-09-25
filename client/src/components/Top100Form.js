@@ -17,7 +17,7 @@ render() {
     return (
         <form on Submit={this.handleSubmit}>
             <input
-                placeholder="Add A Todo"
+                placeholder="Add A Song"
                 required
                 value={this.state.name}
                 onChange={this.handleChange}

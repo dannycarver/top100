@@ -8,7 +8,7 @@ const styles = {
     pointer: { cursor: 'pointer' }
 }
 
-const Top100 = ({ id, complete, name, updateTop100, deleteTop100 }) => (
+const Top100 = ({ id, name, complete, updateTop100, deleteTop100 }) => (
     <div className="col s12">
         <div className="col m8">
             <div style={ complete ? styles.complete : {} } className="center">
@@ -23,7 +23,7 @@ const Top100 = ({ id, complete, name, updateTop100, deleteTop100 }) => (
             onClick={() => updateTop100(id)}
             />
          </div>
-         <div stuyle={ styles.pointer } className="col m1" onClick={() => deleteTop100(id)}>
+         <div style={ styles.pointer } className="col m1" onClick={() => deleteTop100(id)}>
          X
     </div>
 </div>
