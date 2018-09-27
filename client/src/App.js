@@ -9,14 +9,12 @@ class App extends Component {
     //TOP100 make a call to our rails server to get Items
     fetch('/api/songs')
     .then( res => res.json() )
-    .then( top100s => {
-      this.setState({ top100s }) 
-    })
+    .then( top100s => this.setState({ top100s }) )
   }
 
   addSong = (name) => {
     let song = { name };
-    fetch('/api/items', {
+    fetch('/api/songs', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -26,13 +24,12 @@ class App extends Component {
     }).then( res => res.json() )
       .then( top100 => {
       const { top100s } = this.state;
-       
-      this.setState({ top100s: [...top100s] });
+      this.setState({ top100s: [...top100s, top100] });
   })
 }
 
   updateTop100 = (id) => {
-    fetch(`/api/items/${id}`, { method: 'PUT' })
+    fetch(`/api/songs/${id}`, { method: 'PUT' })
       .then( res => res.json() )
       .then( song => {
         let top100s = this.state.top100s.map( t=> {
@@ -45,9 +42,13 @@ class App extends Component {
   }
 
   deleteTop100 = (id) => {
+    fetch(`/api/songs/${id}`, { method: 'DELETE' })
+      .then( () => { 
     const { top100s } = this.state;
     this.setState({ top100s: top100s.filter( t => id !== id) })
+  })
   }
+
 
 
 
@@ -61,7 +62,7 @@ class App extends Component {
       <Top100List
         top100s={this.state.top100s}
         upadateTop100={this.updateTop100}
-        deleteTop100={this.deleteTodo}
+        deleteTop100={this.deleteTop100}
         />
       </div>
     );

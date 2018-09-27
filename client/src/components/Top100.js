@@ -2,7 +2,7 @@ import React from 'react';
 
 const styles = {
     complete: {
-        textDecoration: 'line-through',
+        textDecoration: 'none',
         color: 'grey'
     },
     pointer: { cursor: 'pointer' }
@@ -22,8 +22,9 @@ const Top100 = ({ id, name, complete, updateTop100, deleteTop100 }) => (
             defaultChecked={complete}
             onClick={() => updateTop100(id)}
             />
-         </div>
-         <div style={ styles.pointer } className="col m1" onClick={() => deleteTop100(id)}>
+            <label htmlFor={`song-${id}`}>Complete?</label>
+    </div>
+    <div style={ styles.pointer } className="col m1" onClick={() => deleteTop100(id)}>
          X
     </div>
 </div>
